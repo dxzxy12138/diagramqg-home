@@ -2,6 +2,235 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>DiagramQG: A Dataset for Generating Concept-Focused Questions from Diagrams</title>
+        <style>
+            /* 基础样式设置 */
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+    
+            body {
+                font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+                line-height: 1.6;
+                color: #333;
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 20px;
+                background-color: #f8f9fa;
+            }
+    
+            /* 导航栏样式 */
+            nav {
+                background-color: #fff;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+                padding: 1rem;
+                position: sticky;
+                top: 0;
+                z-index: 1000;
+                border-radius: 8px;
+                margin-bottom: 2rem;
+            }
+    
+            nav ul {
+                list-style: none;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1.5rem;
+            }
+    
+            nav a {
+                text-decoration: none;
+                color: #2c3e50;
+                font-weight: 500;
+                padding: 0.5rem 1rem;
+                border-radius: 4px;
+                transition: all 0.3s ease;
+            }
+    
+            nav a:hover {
+                background-color: #e9ecef;
+                color: #1a73e8;
+            }
+    
+            /* 章节样式 */
+            section {
+                background-color: #fff;
+                padding: 2rem;
+                margin-bottom: 2rem;
+                border-radius: 8px;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            }
+    
+            /* 标题样式 */
+            h1 {
+                font-size: 2.5rem;
+                color: #1a73e8;
+                margin-bottom: 1.5rem;
+                text-align: center;
+                line-height: 1.3;
+            }
+    
+            h2 {
+                font-size: 2rem;
+                color: #2c3e50;
+                margin: 1.5rem 0;
+                padding-bottom: 0.5rem;
+                border-bottom: 2px solid #e9ecef;
+            }
+    
+            h3 {
+                font-size: 1.5rem;
+                color: #34495e;
+                margin: 1.2rem 0;
+            }
+    
+            /* 段落和列表样式 */
+            p {
+                margin-bottom: 1rem;
+                color: #4a4a4a;
+            }
+    
+            ul, ol {
+                margin-left: 1.5rem;
+                margin-bottom: 1rem;
+            }
+    
+            li {
+                margin-bottom: 0.5rem;
+            }
+    
+            /* 图片样式 */
+            img {
+                max-width: 100%;
+                height: auto;
+                display: block;
+                margin: 2rem auto;
+                border-radius: 8px;
+                box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            }
+    
+            /* 特定图片尺寸控制 */
+            #overview img[alt="Dataset Examples"] {
+                max-width: 800px;
+            }
+    
+            #overview img[alt="Domain Distribution"] {
+                max-width: 600px;
+            }
+    
+            #dataset-analysis img[alt="Question Distribution"] {
+                max-width: 700px;
+            }
+    
+            #dataset-analysis img[alt="Concept Distribution"] {
+                max-width: 800px;
+            }
+    
+            /* 表格样式 */
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin: 2rem 0;
+                background-color: #fff;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            }
+    
+            th, td {
+                padding: 1rem;
+                text-align: left;
+                border: 1px solid #e9ecef;
+            }
+    
+            th {
+                background-color: #f8f9fa;
+                font-weight: 600;
+            }
+    
+            tr:hover {
+                background-color: #f8f9fa;
+            }
+    
+            /* 强调文本样式 */
+            strong {
+                color: #1a73e8;
+                font-weight: 600;
+            }
+    
+            em {
+                color: #666;
+                font-style: italic;
+            }
+    
+            /* 链接样式 */
+            a {
+                color: #1a73e8;
+                text-decoration: none;
+                transition: color 0.3s ease;
+            }
+    
+            a:hover {
+                color: #1557b0;
+                text-decoration: underline;
+            }
+    
+            /* 页脚样式 */
+            footer {
+                text-align: center;
+                padding: 2rem;
+                margin-top: 3rem;
+                color: #666;
+                border-top: 1px solid #e9ecef;
+            }
+    
+            /* 响应式设计 */
+            @media screen and (max-width: 768px) {
+                body {
+                    padding: 10px;
+                }
+    
+                nav ul {
+                    flex-direction: column;
+                    align-items: center;
+                }
+    
+                nav li {
+                    width: 100%;
+                    text-align: center;
+                }
+    
+                section {
+                    padding: 1rem;
+                }
+    
+                h1 {
+                    font-size: 2rem;
+                }
+    
+                h2 {
+                    font-size: 1.5rem;
+                }
+    
+                h3 {
+                    font-size: 1.2rem;
+                }
+    
+                table {
+                    display: block;
+                    overflow-x: auto;
+                }
+    
+                img {
+                    max-width: 95%;
+                }
+            }
+        </style>
+    </head>
+    <head>
+        <meta charset="UTF-8">
         <title>DiagramQG: A Dataset for Generating Concept-Focused Questions from Diagrams</title>
         <style>
             /* 控制所有图片的基本样式 */
@@ -226,7 +455,7 @@
     </section>
 
     <footer>
-        <p>© 2023 DiagramQG</p>
+        <p>© 2024 DiagramQG</p>
     </footer>
 </body>
 </html>
