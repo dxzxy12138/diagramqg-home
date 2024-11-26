@@ -1,346 +1,195 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ScienceQA: Science Question Answering</title>
-    <link rel="icon" href="img/logo.png" type="image/icon type">
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/nav.css">
-    <script src="javascript/index.js" defer></script>
+    <title>DiagramQG: A Dataset for Generating Concept-Focused Questions from Diagrams</title>
 </head>
-
 <body>
-    <div id="nav">
-        <div id="icon">
-            <img src="img/logo.png" id="nav-icon">
-            <a class="nav-button" href="https://scienceqa.github.io/"
-                style="margin-left: 2px; font-size: 24px">ScienceQA
-            </a>
-        </div>
-        <div>
-            <a class="nav-button" href="#home">Home</a>
-            <a class="nav-button" href="#dataset">Dataset</a>
-            <a class="nav-button" href="#download">Download</a>
-            <a class="nav-button" href="#method">Method</a>
-            <a class="nav-button" href="#paper">Paper</a>
-            <a class="nav-button" href="#code">Code</a>
-            <a class="nav-button" href="#citation">Citation</a>
-            <a class="nav-button" href="#authors">Authors</a>
-            <a class="nav-button" href="#contact">Contact</a>
-            <a class="nav-button" href="leaderboard.html">Leaderboard</a>
-            <a class="nav-button" href="explore.html">Explore</a>
-            <a class="nav-button" href="visualize.html">Visualize</a>
-        </div>
-    </div>
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#overview">Overview</a></li>
+            <li><a href="#dataset-structure">Dataset Structure</a></li>
+            <li><a href="#data-collection-process">Data Collection Process</a></li>
+            <li><a href="#dataset-analysis">Dataset Analysis</a></li>
+            <li><a href="#unique-challenges">Unique Challenges</a></li>
+            <li><a href="#download">Download</a></li>
+        </ul>
+    </nav>
 
-    <!-- anchor for the home button -->
-    <div id="home" style="position: absolute; top: 0;"></div>
+    <section id="home">
+        <h1>DiagramQG: A Dataset for Generating Concept-Focused Questions from Diagrams</h1>
+    </section>
 
-    <!-- banner -->
-    <div id="title">
-        <div id="title-wrapper">
-            <img src="img/logo.png" id="title-icon">
-            <p id="title-text">ScienceQA</p>
-        </div>
-        <p id="subtitle-text">
-            Learn to Explain: Multimodal Reasoning via<br>
-            Thought Chains for Science Question Answering
-            <br><br>
-            (NeurIPS 2022)
-        </p>
-        <p id="title-padding-bottom">&nbsp;</p>
-    </div>
+    <section id="overview">
+        <h2>Overview</h2>
+        <p>DiagramQG is a comprehensive educational dataset focused on scientific diagram question generation. It contains:</p>
+        <ul>
+            <li><strong>19,475 unique questions</strong></li>
+            <li><strong>8,372 diagrams</strong></li>
+            <li><strong>44,472 combinations</strong> of (target &amp; concept text constraint, diagram, question)</li>
+            <li>Coverage across <strong>4 subjects</strong>, <strong>15 courses</strong>, and <strong>169 concepts</strong></li>
+        </ul>
+        <p><strong>Note:</strong> Due to the ongoing peer review process of our research paper, we are currently releasing a subset of the DiagramQG dataset.</p>
+        <img src="img/example.png" alt="Dataset Examples">
+        <p><em>Figure 1: Four different examples of different subjects in the DiagramQG dataset.</em></p>
+        <img src="img/course.png" alt="Domain Distribution">
+        <p><em>Figure 2: Domain diversity in DiagramQG. Each color corresponds to one subject: Natural Science (blue), Earth Science (yellow), Applied Science (green), and Social Science (orange).</em></p>
+    </section>
 
-    <!-- the main body of the page -->
-    <!-- each section uses an empty div as an anchor -->
-    <div id="body">
-        <div class="section">
-            <div id="about" class="anchor"></div>
-            <h1>About ScienceQA</h1>
-            <div id="example-box">
-                <img class="example-img" src="img/scienceqa.png" alt="scienceqa.png">
-            </div>
-            <p style="line-height: 150%">
-                When answering a question, humans utilize the information available across different modalities to
-                synthesize a consistent and complete chain of thought (CoT). This process is normally a
-                black box in the
-                case of deep learning models like large-scale language models. Recently, science question benchmarks
-                have been used to diagnose the multi-hop reasoning ability and interpretability of an AI system.
-                However, existing datasets fail to provide annotations for the answers, or are restricted to the
-                textual-only modality, small scales, and limited domain diversity.
-                To this end, we present <strong>Science Question Answering (ScienceQA)</strong>, a new benchmark
-                that consists of ~21k multimodal multiple choice questions with a diverse set of
-                <i>science</i> topics and
-                annotations of their answers with corresponding <i>lectures</i> and <i>explanations</i>. We further
-                design language
-                models to learn to generate lectures and explanations as <strong>the chain of thought (CoT)</strong> to
-                mimic the
-                multi-hop reasoning process when answering ScienceQA questions. ScienceQA demonstrates the utility of
-                CoT in language models, as CoT improves the question answering performance by 1.20% in few-shot GPT-3
-                and 3.99% in fine-tuned UnifiedQA.
-            </p>
+    <section id="dataset-structure">
+        <h2>Dataset Structure</h2>
+        <h3>Subject Areas</h3>
+        <p>The dataset covers four main subject areas:</p>
+        <ul>
+            <li>Natural Science</li>
+            <li>Earth Science</li>
+            <li>Applied Science</li>
+            <li>Social Science</li>
+        </ul>
 
-        </div>
+        <h3>Hierarchical Organization</h3>
+        <p>Data is organized hierarchically:</p>
+        <ol>
+            <li><strong>Subject</strong> (e.g., Natural Science)</li>
+            <li><strong>Course</strong> (e.g., Biology)</li>
+            <li><strong>Concept</strong> (e.g., Ecological interactions)</li>
+        </ol>
+    </section>
 
-        <!-- <hr> -->
-        <div class="section">
-            <div id="dataset" class="anchor"></div>
-            <h1>ScienceQA Dataset</h1>
-            <p>
-                ScienceQA is collected from elementary and high school science curricula, and contains 21,208 multimodal
-                multiple-choice science questions.
+    <section id="data-collection-process">
+        <h2>Data Collection Process</h2>
+        <h3>Phase 1: Initial Data Gathering</h3>
+        <ul>
+            <li><strong>Sources:</strong> Existing datasets and Google Image Search</li>
+            <li><strong>Raw dataset:</strong> 20,000+ diagrams and 40,000+ questions</li>
+        </ul>
 
-                Out of the questions in ScienceQA, 10,332 (48.7%) have an image context, 10,220 (48.2%)
-                have a text context, and 6,532 (30.8%) have both.
-                Most questions are annotated with grounded lectures (83.9%) and detailed explanations
-                (90.5%).
-                The lecture and explanation provide
-                general external knowledge and specific reasons, respectively, for arriving at the correct answer.
+        <h3>Phase 2: Organization</h3>
+        <ul>
+            <li><strong>Classification</strong> into 4 subjects and 15 courses</li>
+            <li><strong>Mapping</strong> questions to 169 distinct concepts</li>
+        </ul>
 
-                To the best of our knowledge, ScienceQA
-                is the first large-scale multimodal dataset that annotates lectures and explanations for the answers.
-            </p>
-            <p>
-                ScienceQA, in contrast to previous datasets,
-                has richer domain diversity from three subjects: <strong>natural science</strong>,
-                <strong>language science</strong>, and
-                <strong>social science</strong>.
+        <h3>Phase 3: Annotation</h3>
+        <ul>
+            <li><strong>Trained crowd workers</strong> annotate:
+                <ul>
+                    <li>Target &amp; concept text constraints</li>
+                    <li>Diagram elements and texts</li>
+                </ul>
+            </li>
+            <li><strong>Produced</strong> 70,000+ unique combinations</li>
+        </ul>
 
-                Questions in each subject are categorized first by the topic
-                (<i>Biology</i>, <i>Physics</i>, <i>Chemistry</i>, etc.), then by the category (<i>Plants</i>,
-                <i>Cells</i>, <i>Animals</i>,
-                etc.), and finally by the skill (<i>Classify fruits and vegetables as plant parts</i>, <i>Identify
-                    countries of Africa</i>, etc.).
-                ScienceQA features 26 topics, 127 categories, and 379 skills that cover a wide range of domains.
-            </p>
-            <div id="example-box">
-                <img class="example-img" src="img/domains.png" style="width: 98%" alt="domains.png" />
-            </div>
-            <p>
-                For more details, you can explore the datatset and check the visualizations here:
-                <a class="ext-link" href="https://ScienceQA.github.io/explore.html">Explore</a> and
-                <a class="ext-link" href="https://ScienceQA.github.io/visualize.html">Visualizations</a>.
-            </p>
-            <p>
-                Our dataset is distributed under the
-                <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="blank" class="ext-link">
-                    CC BY-NC-SA (Attribution-NonCommercial-ShareAlike)
-                </a>
-                license. You can download our dataset from
-                <!-- <a href="https://ScienceQA2021.s3.us-west-1.amazonaws.com/ScienceQA_data.zip" class="ext-link">
-                    ScienceQA
-                </a>
-                (S3) or -->
-                <a href="https://drive.google.com/drive/folders/16kuhXdM-MOhYcFIyRj91WvnDnjnF-xHw?usp=sharing" class="ext-link">
-                    ScienceQA
-                </a>
-                (Google Drive), or check out our
-                <a href="https://github.com/lupantech/ScienceQA" class="ext-link" target="blank">github
-                    repository</a>.
-            </p>
-            <p>
-                💥 The ScienceQA dataset is now available at <a href="https://huggingface.co/datasets/derek-thomas/ScienceQA" class="ext-link" target="blank">HuggingFace Datasets</a>!
-            </p>
-        </div>
+        <h3>Phase 4: Quality Assurance</h3>
+        <ul>
+            <li><strong>Secondary crowd worker evaluation</strong> (0-100 scale)</li>
+            <li><strong>Filtered</strong> combinations below 60 points</li>
+            <li><strong>Final dataset:</strong> 44,472 validated combinations</li>
+        </ul>
+    </section>
 
-        <!-- <hr> -->
-        <div class="section">
-            <div id="method" class="anchor"></div>
-            <h1>Method</h1>
-            <p>
-                We build a few-shot GPT-3 model via chain-of-thought (CoT) prompting to generate the answer followed
-                by the lecture and the explanations.
-            </p>
+    <section id="dataset-analysis">
+        <h2>Dataset Analysis</h2>
+        <h3>Question Distribution</h3>
+        <img src="img/sunburst_chart_hd.png" alt="Question Distribution">
+        <p><em>Figure 3: Question distribution in DiagramQG.</em></p>
 
-            <div id="example-box">
-                <img class="example-img" src="img/prompt.png" style="width: 90%" alt="prompt.png" />
-            </div>
-            <p>
-                The few-shot GPT-3 model (CoT) achieves a state-of-the-art accuracy of 75.17% on ScienceQA.
-                One prediction example is visualized bellow. We can see that GPT-3 (CoT)
-                predicts the correct answer and generates a reasonable lecture and explanation to mimic the human
-                thought process.
-            </p>
-            <div id="example-box">
-                <img class="example-img" src="img/prediction.png" style="width: 98%" alt="prediction.png" />
-            </div>
+        <h3>Concept Distribution</h3>
+        <img src="img/proportions_plot_v6.png" alt="Concept Distribution">
+        <p><em>Figure 4: Distribution of diagrams, questions, and questions per diagram ratios across different concepts in DiagramQG.</em></p>
 
-            <p>
-                The results of other baselines and recent work are reported at the <a
-                    href="https://scienceqa.github.io/leaderboard.html" class="ext-link" target="blank">Leaderboard</a>
-                page.
-            </p>
-        </div>
+        <h3>Dataset Comparison</h3>
+        <table border="1">
+            <tr>
+                <th>Dataset</th>
+                <th>Questions</th>
+                <th>Images</th>
+                <th>Objects/Image</th>
+                <th>Image Type</th>
+                <th>Constraints</th>
+                <th>Knowledge Type</th>
+            </tr>
+            <tr>
+                <td>VQAv2.0</td>
+                <td>1.1M</td>
+                <td>20k</td>
+                <td>3.5</td>
+                <td>natural</td>
+                <td>answer</td>
+                <td>N/A</td>
+            </tr>
+            <tr>
+                <td>FVQA</td>
+                <td>5,826</td>
+                <td>2k</td>
+                <td>2.9</td>
+                <td>natural</td>
+                <td>answer</td>
+                <td>common-sense</td>
+            </tr>
+            <tr>
+                <td>VQG-COCO</td>
+                <td>25,000</td>
+                <td>5k</td>
+                <td>3.3</td>
+                <td>natural</td>
+                <td>image, caption</td>
+                <td>common-sense</td>
+            </tr>
+            <tr>
+                <td>K-VQG</td>
+                <td>16,098</td>
+                <td>13k</td>
+                <td>2.7</td>
+                <td>natural</td>
+                <td>knowledge triple</td>
+                <td>common-sense</td>
+            </tr>
+            <tr>
+                <td><strong>DiagramQG</strong></td>
+                <td><strong>19,475</strong></td>
+                <td><strong>8,372</strong></td>
+                <td><strong>11.2</strong></td>
+                <td><strong>diagram</strong></td>
+                <td><strong>target, concept</strong></td>
+                <td><strong>subject knowledge</strong></td>
+            </tr>
+        </table>
+    </section>
 
-        <!-- <hr> -->
-        <div class="section">
-            <div id="paper" class="anchor"></div>
-            <h1>Paper</h1>
-            <p>
-                <papername>
-                    Learn to Explain: Multimodal Reasoning via Thought Chains for Science Question Answering
-                </papername><br>
-                Pan Lu, Swaroop Mishra, Tony Xia, Liang Qiu, Kai-Wei Chang, Song-Chun Zhu, Oyvind Tafjord, Peter
-                Clark,
-                Ashwin Kalyan<br>
-                The 36th Conference on Neural Information Processing Systems (NeurIPS), 2022<br>
-                <a href="https://arxiv.org/abs/2209.09513" class="ext-link" target="blank">Paper</a> /
-                <a href="https://lupantech.github.io/papers/neurips22_scienceqa.pdf" class="ext-link"
-                    target="blank">PDF</a> /
-                <a href="https://github.com/lupantech/ScienceQA" class="ext-link" target="blank">Code</a>
-            </p>
-            <p>
-                <a href="https://lupantech.github.io/papers/neurips22_scienceqa.pdf" class="ext-link" target="blank">
-                    <img src="./img/thumbnail.png" style="width: 100%;">
-                </a>
-            </p>
-        </div>
+    <section id="unique-challenges">
+        <h2>Unique Challenges</h2>
+        <ol>
+            <li><strong>Domain-specific Knowledge Requirement</strong>
+                <ul>
+                    <li>Requires understanding of specialized subject concepts</li>
+                    <li>Goes beyond common sense reasoning</li>
+                </ul>
+            </li>
+            <li><strong>Long-tail Distribution</strong>
+                <ul>
+                    <li>Uneven concept coverage</li>
+                    <li>Challenges in model generalization</li>
+                </ul>
+            </li>
+            <li><strong>High Information Density</strong>
+                <ul>
+                    <li>Complex diagram interpretation</li>
+                    <li>Dense visual information processing</li>
+                </ul>
+            </li>
+        </ol>
+    </section>
 
-        <!-- <hr> -->
-        <div class="section">
-            <div id="code" class="anchor"></div>
-            <h1>Code</h1>
-            <p>
-                View on the <a href="https://github.com/lupantech/ScienceQA" class="ext-link" target="blank">github
-                    repository</a>.
-            </p>
-        </div>
+    <section id="download">
+        <h2>Download</h2>
+        <p>Our dataset is released under the <strong>Apache-2.0</strong> license. You can download our dataset from <a href="https://huggingface.co/datasets/zhibei1204/DiagramQG">DiagramQG</a> or check out our <a href="https://github.com/">GitHub repository</a>.</p>
+    </section>
 
-        <!-- <hr> -->
-        <div class="section">
-            <div id="citation" class="anchor"></div>
-            <h1>Citation</h1>
-            <p>
-                If the paper, codes, or the dataset inspire you, please cite us:
-            </p>
-            <pre class="bibtax">
-@inproceedings{lu2022learn,
-    title={Learn to Explain: Multimodal Reasoning via Thought Chains for Science Question Answering},
-    author={Lu, Pan and Mishra, Swaroop and Xia, Tony and Qiu, Liang and Chang, Kai-Wei and Zhu, Song-Chun and Tafjord, Oyvind and Clark, Peter and Ashwin Kalyan},
-    booktitle={The 36th Conference on Neural Information Processing Systems (NeurIPS)},
-    year={2022}
-}</pre>
-            <br>
-        </div>
-
-        <!-- Authors -->
-        <div class="section" id="authors" style="align-content: center">
-            <h1>Authors</h1>
-            <div style="text-align: center; width: 100%; padding-top: 1em;">
-                <div class="profile">
-                    <a href="https://lupantech.github.io/">
-                        <img class="profile-img" src="./img/panlu.jpg">
-                        <p>Pan Lu<sup>1,3</sup></p>
-                    </a>
-                </div>
-                <div class="profile">
-                    <a href="https://swarooprm.github.io/">
-                        <img class="profile-img" src="./img/swaroopmishra.png">
-                        <p>Swaroop Mishra<sup>2,3</sup></p>
-                    </a>
-                </div>
-                <div class="profile">
-                    <a href="https://tonyxia2001.github.io/">
-                        <img class="profile-img" src="./img/tony.jpeg">
-                        <p>Tony Xia<sup>1</sup></p>
-                    </a>
-                </div>
-                <div class="profile">
-                    <a href="https://www.lqiu.info/">
-                        <img class="profile-img" src="./img/liangqiu.jpg">
-                        <p>Liang Qiu<sup>1</sup></p>
-                    </a>
-                </div>
-                <br>
-                <div class="profile">
-                    <a href="http://web.cs.ucla.edu/~kwchang/">
-                        <img class="profile-img" src="./img/Kai-Wei-Chang.jpg">
-                        <p>Kai-Wei Chang<sup>1</sup></p>
-                    </a>
-                </div>
-                <div class="profile" style="">
-                    <a href="http://www.stat.ucla.edu/~sczhu/">
-                        <img class="profile-img" src="./img/zhu.jpg">
-                        <p>Song-Chun Zhu<sup>1</sup></p>
-                    </a>
-                </div>
-                <div class="profile">
-                    <a href="https://allenai.org/team/oyvindt">
-                        <img class="profile-img" src="./img/Oyvind-Tafjord.jpg">
-                        <p>Oyvind Tafjord<sup>3</sup></p>
-                    </a>
-                </div>
-                <div class="profile">
-                    <a href="https://allenai.org/team/peterc">
-                        <img class="profile-img" src="./img/Peter-Clark.jpg">
-                        <p>Peter Clark<sup>3</sup></p>
-                    </a>
-                </div>
-
-                <div class="profile">
-                    <a href="http://ashwinkalyan.com/">
-                        <img class="profile-img" src="./img/ashwinkalyan.jpg">
-                        <p>Ashwin Kalyan<sup>3</sup></p>
-                    </a>
-                </div>
-            </div>
-            <div style="text-align:center; display: inline-block; width: 100%; margin-top: 0">
-                <p>
-                    <sup>1</sup>University of California, Los Angeles &nbsp;&nbsp;
-                    <sup>2</sup>Arizona State University &nbsp;&nbsp;
-                    <sup>3</sup>Allen Institute for AI &nbsp;&nbsp;
-                </p>
-            </div>
-        </div>
-
-        <!-- Contact -->
-        <div class="section" id="contact">
-            <h1>Contact</h1>
-            <p>
-                Questions about ScienceQA, or want to get in touch? Contact Pan Lu at
-                <a href="https://lupantech.github.io/" target="blank" class="ext-link">the contact page</a>, or open
-                up an issue on
-                <a href="https://github.com/lupantech/ScienceQA/issues" target="blank" class="ext-link">Github</a>.
-            </p>
-        </div>
-
-        <!-- Affiliation  -->
-        <div class="section" style="table-layout: auto;">
-            <center>
-                <table>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <a href="https://www.ucla.edu/" target="_blank" rel="external">
-                                    <img class="center-block" src="img/vcla.png"
-                                        style="height:6em; max-width: 100%;"></a>
-                            </td>
-                            <td> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </td>
-                            <td>
-                                <a href="https://www.asu.edu/" target="blank" class="ext-link">
-                                    <img class="center-block" src="img/asu.png" style="height:6em; max-width: 100%;">
-                                </a>
-                            <td> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </td>
-                            <td>
-                                <a href="https://allenai.org/" target="_blank" rel="external">
-                                    <img class="center-block" src="img/ai2.png"
-                                        style="height:3em; max-width: 100%;"></a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table><br>
-            </center>
-        </div>
-
-
-    </div>
-    <!-- footer -->
-    <div id="footer" style="font-size: 12pt">
-        © 2022 Center for Vision, Cognition, Learning, and Autonomy at UCLA
-    </div>
+    <footer>
+        <p>© 2023 DiagramQG</p>
+    </footer>
 </body>
-
 </html>
